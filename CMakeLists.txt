@@ -47,6 +47,11 @@ add_library(${CORE_WIDGETS_ADDON} SHARED
     "${PROJECT_SOURCE_DIR}/src/cpp/include/deps/yoga/event/event.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/include/deps/yoga/internal/experiments.cpp"
     # wrapped cpps
+	"${PROJECT_SOURCE_DIR}/src/cpp/lib/QtMultimedia/QVideoWidget/qvideowidget_wrap.cpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/lib/QtMultimedia/QMediaPlayer/qmediaplayer_wrap.cpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/lib/QtMultimedia/QMediaPlaylist/qmediaplaylist_wrap.cpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/lib/QtMultimedia/QMediaContent/qmediacontent_wrap.cpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/lib/QtMultimedia/QMediaObject/qmediaobject_wrap.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtGui/QBrush/qbrush_wrap.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtGui/QPen/qpen_wrap.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtGui/QColor/qcolor_wrap.cpp"
@@ -98,6 +103,7 @@ add_library(${CORE_WIDGETS_ADDON} SHARED
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtCore/QUrl/qurl_wrap.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtCore/QMimeData/qmimedata_wrap.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWidgets/QWidget/qwidget_wrap.cpp"
+
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWidgets/QDialog/qdialog_wrap.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWidgets/QBoxLayout/qboxlayout_wrap.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/lib/QtWidgets/QCalendarWidget/qcalendarwidget_wrap.cpp"
@@ -175,6 +181,13 @@ add_library(${CORE_WIDGETS_ADDON} SHARED
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtGui/QApplication/napplication.hpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtGui/QDrag/ndrag.hpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWidgets/QWidget/nwidget.hpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtMultimedia/QVideoWidget/qvideowidget_wrap.hpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtMultimedia/QVideoWidget/nvideowidget.hpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtMultimedia/QMediaPlayer/qmediaplayer_wrap.hpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtMultimedia/QMediaPlayer/nmediaplayer.hpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtMultimedia/QMediaPlaylist/qmediaplaylist_wrap.hpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtMultimedia/QMediaContent/qmediacontent_wrap.hpp"
+	"${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtMultimedia/QMediaObject/qmediaobject_wrap.hpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWidgets/QDialog/ndialog.hpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWidgets/QLabel/nlabel.hpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/include/nodegui/QtWidgets/QCalendarWidget/ncalendarwidget.hpp"
@@ -294,4 +307,6 @@ target_link_libraries(${CORE_WIDGETS_ADDON} PRIVATE
     Qt5::Core
     Qt5::Gui
     Qt5::Svg
+    Qt5::Multimedia
+    Qt5::MultimediaWidgets	
 )

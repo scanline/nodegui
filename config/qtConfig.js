@@ -45,6 +45,11 @@ function getMiniQtConfig() {
                             link: `${MIRROR}/online/qtsdkrepository/mac_x64/desktop/qt5_5152/qt.qt5.5152.clang_64/5.15.2-0-202011130601qttools-MacOS-MacOS_10_13-Clang-MacOS-MacOS_10_13-X86_64.7z`,
                             skipSetup: checkIfExists(path.resolve(qtHome, 'bin', 'macdeployqt')),
                         },
+                        {
+                            name: 'Qt Multimedia',
+                            link: `${MIRROR}/online/qtsdkrepository/mac_x64/desktop/qt5_5152/qt.qt5.5152.clang_64/5.15.2-0-202011130601qtmultimedia-MacOS-MacOS_10_13-Clang-MacOS-MacOS_10_13-X86_64.7z`,
+                            skipSetup: checkIfExists(path.resolve(qtHome, 'lib', 'QtMultimedia.framework', 'QtMultimedia')),
+                        }
                     ],
                 };
             }
@@ -69,6 +74,11 @@ function getMiniQtConfig() {
                         link: `${MIRROR}/online/qtsdkrepository/windows_x86/desktop/qt5_5152/qt.qt5.5152.win64_msvc2019_64/5.15.2-0-202011130602qttools-Windows-Windows_10-MSVC2019-Windows-Windows_10-X86_64.7z`,
                         skipSetup: checkIfExists(path.resolve(qtHome, 'bin', 'windeployqt.exe')),
                     },
+                    {
+                        name: 'Qt Multimedia',
+                        link: `${MIRROR}/online/qtsdkrepository/windows_x86/desktop/qt5_5152/qt.qt5.5152.win64_msvc2019_64/5.15.2-0-202011130602qtmultimedia-Windows-Windows_10-MSVC2019-Windows-Windows_10-X86_64.7z`,
+                        skipSetup: checkIfExists(path.resolve(qtHome, 'bin', 'Qt5Multimedia.dll')),
+                    },
                 ],
             };
         }
@@ -91,6 +101,11 @@ function getMiniQtConfig() {
                         name: 'Qt ICU',
                         link: `${MIRROR}/online/qtsdkrepository/linux_x64/desktop/qt5_5152/qt.qt5.5152.gcc_64/5.15.2-0-202011130601icu-linux-Rhel7.2-x64.7z`,
                         skipSetup: checkIfExists(path.resolve(qtHome, 'lib', 'libicuuc.so')),
+                    },
+                    {
+                        name: 'Qt Multimedia',
+                        link: `${MIRROR}/online/qtsdkrepository/linux_x64/desktop/qt5_5152/qt.qt5.5152.gcc_64/5.15.2-0-202011130601qtmultimedia-Linux-RHEL_7_6-GCC-Linux-RHEL_7_6-X86_64.7z`,
+                        skipSetup: checkIfExists(path.resolve(qtHome, 'lib', 'libQt5Multimedia.so')),
                     },
                 ],
             };

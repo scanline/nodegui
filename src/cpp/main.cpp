@@ -51,6 +51,11 @@
 #include "QtGui/QScreen/qscreen_wrap.h"
 #include "QtGui/QStyle/qstyle_wrap.h"
 #include "QtGui/QWindow/qwindow_wrap.h"
+#include "QtMultimedia/QMediaContent/qmediacontent_wrap.hpp"
+#include "QtMultimedia/QMediaObject/qmediaobject_wrap.hpp"
+#include "QtMultimedia/QMediaPlayer/qmediaplayer_wrap.hpp"
+#include "QtMultimedia/QMediaPlaylist/qmediaplaylist_wrap.hpp"
+#include "QtMultimedia/QVideoWidget/qvideowidget_wrap.hpp"
 #include "QtWidgets/QAbstractItemDelegate/qabstractitemdelegate_wrap.h"
 #include "QtWidgets/QAction/qaction_wrap.h"
 #include "QtWidgets/QBoxLayout/qboxlayout_wrap.h"
@@ -180,6 +185,11 @@ Napi::Object Main(Napi::Env env, Napi::Object exports) {
   QGraphicsDropShadowEffectWrap::init(env, exports);
   QGraphicsOpacityEffectWrap::init(env, exports);
   QGraphicsColorizeEffectWrap::init(env, exports);
+  QVideoWidgetWrap::init(env, exports);
+  QMediaPlayerWrap::init(env, exports);
+  QMediaPlaylistWrap::init(env, exports);
+  QMediaContentWrap::init(env, exports);
+  QMediaObjectWrap::init(env, exports);
   QListViewWrap::init(env, exports);
   QListWidgetWrap::init(env, exports);
   QListWidgetItemWrap::init(env, exports);

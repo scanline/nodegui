@@ -78,6 +78,11 @@ export { QGraphicsEffect, QGraphicsEffectSignals } from './lib/QtWidgets/QGraphi
 export { QGraphicsBlurEffect, QGraphicsBlurEffectSignals } from './lib/QtWidgets/QGraphicsBlurEffect';
 export { QGraphicsDropShadowEffect, QGraphicsDropShadowEffectSignals } from './lib/QtWidgets/QGraphicsDropShadowEffect';
 export { QGraphicsOpacityEffect, QGraphicsOpacityEffectSignals } from './lib/QtWidgets/QGraphicsOpacityEffect';
+export { QVideoWidget } from './lib/QtMultimedia/QVideoWidget';
+export { QMediaPlayer } from './lib/QtMultimedia/QMediaPlayer';
+export { QMediaPlaylist } from './lib/QtMultimedia/QMediaPlaylist';
+export { QMediaContent } from './lib/QtMultimedia/QMediaContent';
+export { QMediaObject, QMediaObjectSignals } from './lib/QtMultimedia/QMediaObject';
 export { QGraphicsColorizeEffect, QGraphicsColorizeEffectSignals } from './lib/QtWidgets/QGraphicsColorizeEffect';
 export { QLineEdit, QLineEditSignals, EchoMode } from './lib/QtWidgets/QLineEdit';
 export { QMainWindow, QMainWindowSignals } from './lib/QtWidgets/QMainWindow';

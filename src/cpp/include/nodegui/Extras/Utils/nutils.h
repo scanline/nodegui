@@ -36,3 +36,34 @@ class DLL_EXPORT NUtilsWrap : public Napi::ObjectWrap<NUtilsWrap> {
 namespace StaticNUtilsWrapMethods {
 DLL_EXPORT Napi::Value isNapiExternal(const Napi::CallbackInfo& info);
 }  // namespace StaticNUtilsWrapMethods
+
+#ifndef NODEGUI_LOGGER_H
+#define NODEGUI_LOGGER_H
+
+#include <napi.h>
+
+#include <string>
+
+inline Napi::Value ToJsValue(Napi::Env env, const char* value) {
+  return Napi::String::New(env, value);
+}
+
+inline Napi::Value ToJsValue(Napi::Env env, const std::string& value) {
+  return Napi::String::New(env, value);
+}
+
+template <typename T>
+inline Napi::Value ToJsValue(Napi::Env env, T value) {
+  return Napi::Number::New(env, static_cast<double>(value));
+}
+
+#define CONSOLE_LOG(env, value)                                        \
+  do {                                                                 \
+    Napi::Env _env = (env);                                            \
+    Napi::Object _global = _env.Global();                              \
+    Napi::Object _console = _global.Get("console").As<Napi::Object>(); \
+    Napi::Function _log = _console.Get("log").As<Napi::Function>();    \
+    _log.Call(_console, {ToJsValue(_env, (value))});                   \
+  } while (0)
+
+#endif
