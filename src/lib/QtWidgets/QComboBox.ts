@@ -9,7 +9,7 @@ import { QSize } from '../QtCore/QSize';
 import { QModelIndex } from '../QtCore/QModelIndex';
 import { checkIfNativeElement } from '../utils/helpers';
 import { wrapperCache } from '../core/WrapperCache';
-
+import { ItemDataRole } from '../QtEnums';
 /**
 
 > Create and control a selectable drop down menu.
@@ -151,7 +151,7 @@ export class QComboBox extends QWidget<QComboBoxSignals> {
         this.native.setInsertPolicy(policy);
     }
     // TODO: void 	setItemData(int index, const QVariant &value, int role = Qt::UserRole)
-    setItemData(index: number, value: QVariantType, role: number): void {
+    setItemData(index: number, value: QVariantType, role: ItemDataRole = ItemDataRole.UserRole): void {
         this.native.setItemData(index, new QVariant(value).native, role);
     }
     // TODO: void 	setItemDelegate(QAbstractItemDelegate *delegate)
