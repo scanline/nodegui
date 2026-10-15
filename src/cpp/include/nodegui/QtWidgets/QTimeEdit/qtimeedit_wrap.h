@@ -16,9 +16,9 @@ class DLL_EXPORT QTimeEditWrap : public Napi::ObjectWrap<QTimeEditWrap> {
 
  public:
   static Napi::Object init(Napi::Env env, Napi::Object exports);
-  QTimeEditWrap(const Napi::CallbackInfo &info);
+  QTimeEditWrap(const Napi::CallbackInfo& info);
   ~QTimeEditWrap();
-  QTimeEdit *getInternalInstance();
+  QTimeEdit* getInternalInstance();
   // class constructor
   static Napi::FunctionReference constructor;
   // wrapped methods

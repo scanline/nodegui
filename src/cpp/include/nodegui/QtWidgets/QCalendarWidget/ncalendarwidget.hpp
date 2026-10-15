@@ -17,7 +17,7 @@ class DLL_EXPORT NCalendarWidget : public QCalendarWidget, public NodeWidget {
   virtual void connectSignalsToEventEmitter() {
     // Qt Connects: Implement all signal connects here
     QWIDGET_SIGNALS
-    QObject::connect(this, &QCalendarWidget::activated, [=](const QDate &date) {
+    QObject::connect(this, &QCalendarWidget::activated, [=](const QDate& date) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
 
@@ -25,7 +25,7 @@ class DLL_EXPORT NCalendarWidget : public QCalendarWidget, public NodeWidget {
           env, new QDate(date.year(), date.month(), date.day()))});
       this->emitOnNode.Call({Napi::String::New(env, "activated"), instance});
     });
-    QObject::connect(this, &QCalendarWidget::clicked, [=](const QDate &date) {
+    QObject::connect(this, &QCalendarWidget::clicked, [=](const QDate& date) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
 

@@ -32,10 +32,10 @@ Napi::Object QStatusBarWrap::init(Napi::Env env, Napi::Object exports) {
   return exports;
 }
 
-QStatusBar *QStatusBarWrap::getInternalInstance() { return this->instance; }
+QStatusBar* QStatusBarWrap::getInternalInstance() { return this->instance; }
 
 Napi::Value QStatusBarWrap::fromQStatusBar(Napi::Env env,
-                                           QStatusBar *statusBar) {
+                                           QStatusBar* statusBar) {
   // The item might be a nullptr, therefore use env.Null() as return value.
   if (statusBar == nullptr) {
     return env.Null();
@@ -48,7 +48,7 @@ Napi::Value QStatusBarWrap::fromQStatusBar(Napi::Env env,
 
 QStatusBarWrap::~QStatusBarWrap() { extrautils::safeDelete(this->instance); }
 
-QStatusBarWrap::QStatusBarWrap(const Napi::CallbackInfo &info)
+QStatusBarWrap::QStatusBarWrap(const Napi::CallbackInfo& info)
     : Napi::ObjectWrap<QStatusBarWrap>(info) {
   Napi::Env env = info.Env();
   size_t argCount = info.Length();
@@ -62,7 +62,7 @@ QStatusBarWrap::QStatusBarWrap(const Napi::CallbackInfo &info)
     } else {
       // --- Construct a new instance and pass a parent
       Napi::Object parentObject = info[0].As<Napi::Object>();
-      NodeWidgetWrap *parentWidgetWrap =
+      NodeWidgetWrap* parentWidgetWrap =
           Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(parentObject);
       this->instance = new NStatusBar(parentWidgetWrap->getInternalInstance());
     }
@@ -76,14 +76,14 @@ QStatusBarWrap::QStatusBarWrap(const Napi::CallbackInfo &info)
       extrautils::configureQWidget(this->getInternalInstance(), true);
 }
 
-Napi::Value QStatusBarWrap::addPermanentWidget(const Napi::CallbackInfo &info) {
+Napi::Value QStatusBarWrap::addPermanentWidget(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::Object widgetArg = info[0].As<Napi::Object>();
   Napi::Number stretchArg = info[1].As<Napi::Number>();
 
-  NodeWidgetWrap *widgetWrap =
+  NodeWidgetWrap* widgetWrap =
       Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(widgetArg);
-  QWidget *widget = widgetWrap->getInternalInstance();
+  QWidget* widget = widgetWrap->getInternalInstance();
   int stretch = stretchArg.Int32Value();
 
   this->instance->addPermanentWidget(widget, stretch);
@@ -91,14 +91,14 @@ Napi::Value QStatusBarWrap::addPermanentWidget(const Napi::CallbackInfo &info) {
   return env.Null();
 }
 
-Napi::Value QStatusBarWrap::addWidget(const Napi::CallbackInfo &info) {
+Napi::Value QStatusBarWrap::addWidget(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::Object widgetArg = info[0].As<Napi::Object>();
   Napi::Number stretchArg = info[1].As<Napi::Number>();
 
-  NodeWidgetWrap *widgetWrap =
+  NodeWidgetWrap* widgetWrap =
       Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(widgetArg);
-  QWidget *widget = widgetWrap->getInternalInstance();
+  QWidget* widget = widgetWrap->getInternalInstance();
   int stretch = stretchArg.Int32Value();
 
   this->instance->addWidget(widget, stretch);
@@ -106,14 +106,14 @@ Napi::Value QStatusBarWrap::addWidget(const Napi::CallbackInfo &info) {
   return env.Null();
 }
 
-Napi::Value QStatusBarWrap::clearMessage(const Napi::CallbackInfo &info) {
+Napi::Value QStatusBarWrap::clearMessage(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   this->instance->clearMessage();
 
   return env.Null();
 }
 
-Napi::Value QStatusBarWrap::currentMessage(const Napi::CallbackInfo &info) {
+Napi::Value QStatusBarWrap::currentMessage(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   std::string currentMessage = this->instance->currentMessage().toStdString();
 
@@ -121,16 +121,16 @@ Napi::Value QStatusBarWrap::currentMessage(const Napi::CallbackInfo &info) {
 }
 
 Napi::Value QStatusBarWrap::insertPermanentWidget(
-    const Napi::CallbackInfo &info) {
+    const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::Number indexArg = info[0].As<Napi::Number>();
   Napi::Object widgetArg = info[1].As<Napi::Object>();
   Napi::Number stretchArg = info[2].As<Napi::Number>();
 
   int index = indexArg.Int32Value();
-  NodeWidgetWrap *widgetWrap =
+  NodeWidgetWrap* widgetWrap =
       Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(widgetArg);
-  QWidget *widget = widgetWrap->getInternalInstance();
+  QWidget* widget = widgetWrap->getInternalInstance();
   int stretch = stretchArg.Int32Value();
 
   int targetIndex =
@@ -139,39 +139,39 @@ Napi::Value QStatusBarWrap::insertPermanentWidget(
   return Napi::Value::From(env, targetIndex);
 }
 
-Napi::Value QStatusBarWrap::insertWidget(const Napi::CallbackInfo &info) {
+Napi::Value QStatusBarWrap::insertWidget(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::Number indexArg = info[0].As<Napi::Number>();
   Napi::Object widgetArg = info[1].As<Napi::Object>();
   Napi::Number stretchArg = info[2].As<Napi::Number>();
 
   int index = indexArg.Int32Value();
-  NodeWidgetWrap *widgetWrap =
+  NodeWidgetWrap* widgetWrap =
       Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(widgetArg);
-  QWidget *widget = widgetWrap->getInternalInstance();
+  QWidget* widget = widgetWrap->getInternalInstance();
   int stretch = stretchArg.Int32Value();
   int targetIndex = this->instance->insertWidget(index, widget, stretch);
   return Napi::Value::From(env, targetIndex);
 }
 
-Napi::Value QStatusBarWrap::isSizeGripEnabled(const Napi::CallbackInfo &info) {
+Napi::Value QStatusBarWrap::isSizeGripEnabled(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   bool isEnabled = this->instance->isSizeGripEnabled();
   return Napi::Value::From(env, isEnabled);
 }
 
-Napi::Value QStatusBarWrap::removeWidget(const Napi::CallbackInfo &info) {
+Napi::Value QStatusBarWrap::removeWidget(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::Object widgetArg = info[0].As<Napi::Object>();
 
-  NodeWidgetWrap *widgetWrap =
+  NodeWidgetWrap* widgetWrap =
       Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(widgetArg);
-  QWidget *widget = widgetWrap->getInternalInstance();
+  QWidget* widget = widgetWrap->getInternalInstance();
   this->instance->removeWidget(widget);
   return env.Null();
 }
 
-Napi::Value QStatusBarWrap::showMessage(const Napi::CallbackInfo &info) {
+Napi::Value QStatusBarWrap::showMessage(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::String message = info[0].As<Napi::String>();
   Napi::Number timeout = info[1].As<Napi::Number>();
@@ -181,7 +181,7 @@ Napi::Value QStatusBarWrap::showMessage(const Napi::CallbackInfo &info) {
   return env.Null();
 }
 
-Napi::Value QStatusBarWrap::setSizeGripEnabled(const Napi::CallbackInfo &info) {
+Napi::Value QStatusBarWrap::setSizeGripEnabled(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::Boolean enableArg = info[0].As<Napi::Boolean>();
   bool enable = enableArg.ToBoolean();

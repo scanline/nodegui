@@ -31,15 +31,15 @@ class DLL_EXPORT NComboBox : public QComboBox, public NodeWidget {
                                  Napi::Number::From(env, index)});
         });
     QObject::connect(
-        this, QOverload<const QString &>::of(&QComboBox::currentTextChanged),
-        [=](const QString &text) {
+        this, QOverload<const QString&>::of(&QComboBox::currentTextChanged),
+        [=](const QString& text) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           this->emitOnNode.Call({Napi::String::New(env, "currentTextChanged"),
                                  Napi::String::New(env, text.toStdString())});
         });
     QObject::connect(
-        this, &QComboBox::editTextChanged, [=](const QString &text) {
+        this, &QComboBox::editTextChanged, [=](const QString& text) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           this->emitOnNode.Call({Napi::String::New(env, "editTextChanged"),
@@ -52,14 +52,14 @@ class DLL_EXPORT NComboBox : public QComboBox, public NodeWidget {
           this->emitOnNode.Call({Napi::String::New(env, "highlighted"),
                                  Napi::Number::From(env, index)});
         });
-    QObject::connect(this, &QComboBox::textActivated, [=](const QString &text) {
+    QObject::connect(this, &QComboBox::textActivated, [=](const QString& text) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       this->emitOnNode.Call({Napi::String::New(env, "textActivated"),
                              Napi::String::New(env, text.toStdString())});
     });
     QObject::connect(
-        this, &QComboBox::textHighlighted, [=](const QString &text) {
+        this, &QComboBox::textHighlighted, [=](const QString& text) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           this->emitOnNode.Call({Napi::String::New(env, "textHighlighted"),

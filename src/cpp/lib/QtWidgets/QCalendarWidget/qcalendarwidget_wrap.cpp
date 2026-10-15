@@ -32,7 +32,7 @@ Napi::Object QCalendarWidgetWrap::init(Napi::Env env, Napi::Object exports) {
   return exports;
 }
 
-QCalendarWidget *QCalendarWidgetWrap::getInternalInstance() {
+QCalendarWidget* QCalendarWidgetWrap::getInternalInstance() {
   return this->instance;
 }
 
@@ -40,7 +40,7 @@ QCalendarWidgetWrap::~QCalendarWidgetWrap() {
   extrautils::safeDelete(this->instance);
 }
 
-QCalendarWidgetWrap::QCalendarWidgetWrap(const Napi::CallbackInfo &info)
+QCalendarWidgetWrap::QCalendarWidgetWrap(const Napi::CallbackInfo& info)
     : Napi::ObjectWrap<QCalendarWidgetWrap>(info) {
   Napi::Env env = info.Env();
   size_t argCount = info.Length();
@@ -54,7 +54,7 @@ QCalendarWidgetWrap::QCalendarWidgetWrap(const Napi::CallbackInfo &info)
     } else {
       // --- Construct a new instance and pass a parent
       Napi::Object parentObject = info[0].As<Napi::Object>();
-      NodeWidgetWrap *parentWidgetWrap =
+      NodeWidgetWrap* parentWidgetWrap =
           Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(parentObject);
       this->instance =
           new NCalendarWidget(parentWidgetWrap->getInternalInstance());
@@ -70,18 +70,18 @@ QCalendarWidgetWrap::QCalendarWidgetWrap(const Napi::CallbackInfo &info)
       extrautils::configureQWidget(this->getInternalInstance(), true);
 }
 
-Napi::Value QCalendarWidgetWrap::monthShown(const Napi::CallbackInfo &info) {
+Napi::Value QCalendarWidgetWrap::monthShown(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   return Napi::Value::From(env, this->instance->monthShown());
 }
 
-Napi::Value QCalendarWidgetWrap::yearShown(const Napi::CallbackInfo &info) {
+Napi::Value QCalendarWidgetWrap::yearShown(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   return Napi::Value::From(env, this->instance->yearShown());
 }
 
 Napi::Value QCalendarWidgetWrap::setCurrentPage(
-    const Napi::CallbackInfo &info) {
+    const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
   int year = info[0].As<Napi::Number>().Int32Value();
@@ -90,40 +90,40 @@ Napi::Value QCalendarWidgetWrap::setCurrentPage(
   return env.Null();
 }
 
-Napi::Value QCalendarWidgetWrap::showNextMonth(const Napi::CallbackInfo &info) {
+Napi::Value QCalendarWidgetWrap::showNextMonth(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   this->instance->showNextMonth();
   return env.Null();
 }
 
-Napi::Value QCalendarWidgetWrap::showNextYear(const Napi::CallbackInfo &info) {
+Napi::Value QCalendarWidgetWrap::showNextYear(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   this->instance->showNextYear();
   return env.Null();
 }
 
 Napi::Value QCalendarWidgetWrap::showPreviousMonth(
-    const Napi::CallbackInfo &info) {
+    const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   this->instance->showPreviousMonth();
   return env.Null();
 }
 
 Napi::Value QCalendarWidgetWrap::showPreviousYear(
-    const Napi::CallbackInfo &info) {
+    const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   this->instance->showPreviousYear();
   return env.Null();
 }
 
 Napi::Value QCalendarWidgetWrap::showSelectedDate(
-    const Napi::CallbackInfo &info) {
+    const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   this->instance->showSelectedDate();
   return env.Null();
 }
 
-Napi::Value QCalendarWidgetWrap::showToday(const Napi::CallbackInfo &info) {
+Napi::Value QCalendarWidgetWrap::showToday(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   this->instance->showToday();
   return env.Null();

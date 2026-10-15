@@ -15,11 +15,11 @@ class DLL_EXPORT QSpinBoxWrap : public Napi::ObjectWrap<QSpinBoxWrap> {
 
  public:
   static Napi::Object init(Napi::Env env, Napi::Object exports);
-  QSpinBoxWrap(const Napi::CallbackInfo &info);
+  QSpinBoxWrap(const Napi::CallbackInfo& info);
   ~QSpinBoxWrap();
-  QSpinBox *getInternalInstance();
+  QSpinBox* getInternalInstance();
   // class constructor
   static Napi::FunctionReference constructor;
   // wrapped methods
-  Napi::Value setRange(const Napi::CallbackInfo &info);
+  Napi::Value setRange(const Napi::CallbackInfo& info);
 };

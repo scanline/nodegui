@@ -41,7 +41,7 @@ class DLL_EXPORT NMovie : public QMovie, public EventWidget {
       Napi::HandleScope scope(env);
       this->emitOnNode.Call({Napi::String::New(env, "started")});
     });
-    QObject::connect(this, &QMovie::resized, [=](const QSize &size) {
+    QObject::connect(this, &QMovie::resized, [=](const QSize& size) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       auto instance = QSizeWrap::constructor.New({Napi::External<QSize>::New(
@@ -56,7 +56,7 @@ class DLL_EXPORT NMovie : public QMovie, public EventWidget {
                            {Napi::String::New(env, "stateChanged"),
                             Napi::Number::New(env, static_cast<int>(state))});
                      });
-    QObject::connect(this, &QMovie::updated, [=](const QRect &rect) {
+    QObject::connect(this, &QMovie::updated, [=](const QRect& rect) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       auto instance = QRectWrap::constructor.New(

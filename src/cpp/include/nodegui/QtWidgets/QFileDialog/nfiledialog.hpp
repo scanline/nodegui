@@ -16,7 +16,7 @@ class DLL_EXPORT NFileDialog : public QFileDialog, public NodeWidget {
     QDIALOG_SIGNALS
     // Qt Connects: Implement all signal connects here
     QObject::connect(
-        this, &QFileDialog::currentChanged, [=](const QString &path) {
+        this, &QFileDialog::currentChanged, [=](const QString& path) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           this->emitOnNode.Call({Napi::String::New(env, "currentChanged"),
@@ -24,7 +24,7 @@ class DLL_EXPORT NFileDialog : public QFileDialog, public NodeWidget {
         });
 
     QObject::connect(
-        this, &QFileDialog::currentUrlChanged, [=](const QUrl &url) {
+        this, &QFileDialog::currentUrlChanged, [=](const QUrl& url) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           this->emitOnNode.Call(
@@ -33,7 +33,7 @@ class DLL_EXPORT NFileDialog : public QFileDialog, public NodeWidget {
         });
 
     QObject::connect(this, &QFileDialog::directoryEntered,
-                     [=](const QString &directory) {
+                     [=](const QString& directory) {
                        Napi::Env env = this->emitOnNode.Env();
                        Napi::HandleScope scope(env);
                        this->emitOnNode.Call(
@@ -42,7 +42,7 @@ class DLL_EXPORT NFileDialog : public QFileDialog, public NodeWidget {
                      });
 
     QObject::connect(
-        this, &QFileDialog::directoryUrlEntered, [=](const QUrl &directory) {
+        this, &QFileDialog::directoryUrlEntered, [=](const QUrl& directory) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           this->emitOnNode.Call(
@@ -50,14 +50,14 @@ class DLL_EXPORT NFileDialog : public QFileDialog, public NodeWidget {
                Napi::String::New(env, directory.toString().toStdString())});
         });
     QObject::connect(
-        this, &QFileDialog::fileSelected, [=](const QString &file) {
+        this, &QFileDialog::fileSelected, [=](const QString& file) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           this->emitOnNode.Call({Napi::String::New(env, "fileSelected"),
                                  Napi::String::New(env, file.toStdString())});
         });
     QObject::connect(
-        this, &QFileDialog::filesSelected, [=](const QStringList &selected) {
+        this, &QFileDialog::filesSelected, [=](const QStringList& selected) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           Napi::Array selectedNapi = Napi::Array::New(env, selected.size());
@@ -69,14 +69,14 @@ class DLL_EXPORT NFileDialog : public QFileDialog, public NodeWidget {
         });
 
     QObject::connect(
-        this, &QFileDialog::filterSelected, [=](const QString &filter) {
+        this, &QFileDialog::filterSelected, [=](const QString& filter) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           this->emitOnNode.Call({Napi::String::New(env, "filterSelected"),
                                  Napi::String::New(env, filter.toStdString())});
         });
 
-    QObject::connect(this, &QFileDialog::urlSelected, [=](const QUrl &url) {
+    QObject::connect(this, &QFileDialog::urlSelected, [=](const QUrl& url) {
       Napi::Env env = this->emitOnNode.Env();
       Napi::HandleScope scope(env);
       this->emitOnNode.Call(
@@ -85,7 +85,7 @@ class DLL_EXPORT NFileDialog : public QFileDialog, public NodeWidget {
     });
 
     QObject::connect(
-        this, &QFileDialog::urlsSelected, [=](const QList<QUrl> &urls) {
+        this, &QFileDialog::urlsSelected, [=](const QList<QUrl>& urls) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
           Napi::Array urlsNapi = Napi::Array::New(env, urls.size());

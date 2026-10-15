@@ -16,15 +16,15 @@ class DLL_EXPORT QStackedWidgetWrap
 
  public:
   static Napi::Object init(Napi::Env env, Napi::Object exports);
-  QStackedWidgetWrap(const Napi::CallbackInfo &info);
+  QStackedWidgetWrap(const Napi::CallbackInfo& info);
   ~QStackedWidgetWrap();
-  QStackedWidget *getInternalInstance();
+  QStackedWidget* getInternalInstance();
   // class constructor
   static Napi::FunctionReference constructor;
   // wrapped methods
-  Napi::Value addWidget(const Napi::CallbackInfo &info);
-  Napi::Value removeWidget(const Napi::CallbackInfo &info);
-  Napi::Value setCurrentIndex(const Napi::CallbackInfo &info);
-  Napi::Value currentIndex(const Napi::CallbackInfo &info);
-  Napi::Value setCurrentWidget(const Napi::CallbackInfo &info);
+  Napi::Value addWidget(const Napi::CallbackInfo& info);
+  Napi::Value removeWidget(const Napi::CallbackInfo& info);
+  Napi::Value setCurrentIndex(const Napi::CallbackInfo& info);
+  Napi::Value currentIndex(const Napi::CallbackInfo& info);
+  Napi::Value setCurrentWidget(const Napi::CallbackInfo& info);
 };

@@ -10,7 +10,7 @@
 // From Qode headers
 namespace qode {
 QODE_FIX int qode_argc;
-QODE_FIX char **qode_argv;
+QODE_FIX char** qode_argv;
 typedef int (*QodeCustomRunLoopFunc)();
 extern void InjectCustomRunLoop(QodeCustomRunLoopFunc customRunLoop);
 }  // namespace qode

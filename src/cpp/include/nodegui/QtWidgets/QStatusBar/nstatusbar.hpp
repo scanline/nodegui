@@ -15,7 +15,7 @@ class DLL_EXPORT NStatusBar : public QStatusBar, public NodeWidget {
 
   virtual void connectSignalsToEventEmitter() {
     QObject::connect(
-        this, &QStatusBar::messageChanged, [=](const QString &message) {
+        this, &QStatusBar::messageChanged, [=](const QString& message) {
           Napi::Env env = this->emitOnNode.Env();
           Napi::HandleScope scope(env);
 

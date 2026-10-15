@@ -15,11 +15,11 @@ Napi::Object QDialogWrap::init(Napi::Env env, Napi::Object exports) {
   return exports;
 }
 
-QDialog *QDialogWrap::getInternalInstance() { return this->instance; }
+QDialog* QDialogWrap::getInternalInstance() { return this->instance; }
 
 QDialogWrap::~QDialogWrap() { extrautils::safeDelete(this->instance); }
 
-QDialogWrap::QDialogWrap(const Napi::CallbackInfo &info)
+QDialogWrap::QDialogWrap(const Napi::CallbackInfo& info)
     : Napi::ObjectWrap<QDialogWrap>(info) {
   Napi::Env env = info.Env();
   size_t argCount = info.Length();
@@ -33,7 +33,7 @@ QDialogWrap::QDialogWrap(const Napi::CallbackInfo &info)
     } else {
       // --- Construct a new instance and pass a parent
       Napi::Object parentObject = info[0].As<Napi::Object>();
-      NodeWidgetWrap *parentWidgetWrap =
+      NodeWidgetWrap* parentWidgetWrap =
           Napi::ObjectWrap<NodeWidgetWrap>::Unwrap(parentObject);
       this->instance = new NDialog(parentWidgetWrap->getInternalInstance());
     }

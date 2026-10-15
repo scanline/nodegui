@@ -16,18 +16,18 @@
 #ifndef QDATETIMEEDIT_WRAPPED_METHODS_DECLARATION
 #define QDATETIMEEDIT_WRAPPED_METHODS_DECLARATION                            \
   QABSTRACTSPINBOX_WRAPPED_METHODS_DECLARATION                               \
-  Napi::Value setCalendarWidget(const Napi::CallbackInfo &info) {            \
+  Napi::Value setCalendarWidget(const Napi::CallbackInfo& info) {            \
     Napi::Env env = info.Env();                                              \
     Napi::Object calendarWidgetObject = info[0].As<Napi::Object>();          \
-    QCalendarWidgetWrap *calendarWidgetWrap =                                \
+    QCalendarWidgetWrap* calendarWidgetWrap =                                \
         Napi::ObjectWrap<QCalendarWidgetWrap>::Unwrap(calendarWidgetObject); \
     this->instance->setCalendarWidget(                                       \
         calendarWidgetWrap->getInternalInstance());                          \
     return env.Null();                                                       \
   }                                                                          \
-  Napi::Value calendarWidget(const Napi::CallbackInfo &info) {               \
+  Napi::Value calendarWidget(const Napi::CallbackInfo& info) {               \
     Napi::Env env = info.Env();                                              \
-    QObject *calendarWidget = this->instance->calendarWidget();              \
+    QObject* calendarWidget = this->instance->calendarWidget();              \
     if (calendarWidget) {                                                    \
       return WrapperCache::instance.getWrapper(env, calendarWidget);         \
     } else {                                                                 \
@@ -48,7 +48,7 @@
 #ifndef QDATETIMEEDIT_SIGNALS
 #define QDATETIMEEDIT_SIGNALS                                                  \
   QABSTRACTSPINBOX_SIGNALS                                                     \
-  QObject::connect(this, &QDateTimeEdit::dateChanged, [=](const QDate &date) { \
+  QObject::connect(this, &QDateTimeEdit::dateChanged, [=](const QDate& date) { \
     Napi::Env env = this->emitOnNode.Env();                                    \
     Napi::HandleScope scope(env);                                              \
     auto instance = QDateWrap::constructor.New({Napi::External<QDate>::New(    \
@@ -56,7 +56,7 @@
     this->emitOnNode.Call({Napi::String::New(env, "dateChanged"), instance});  \
   });                                                                          \
   QObject::connect(                                                            \
-      this, &QDateTimeEdit::dateTimeChanged, [=](const QDateTime &datetime) {  \
+      this, &QDateTimeEdit::dateTimeChanged, [=](const QDateTime& datetime) {  \
         Napi::Env env = this->emitOnNode.Env();                                \
         Napi::HandleScope scope(env);                                          \
         auto instance = QDateTimeWrap::constructor.New(                        \
@@ -64,7 +64,7 @@
         this->emitOnNode.Call(                                                 \
             {Napi::String::New(env, "dateTimeChanged"), instance});            \
       });                                                                      \
-  QObject::connect(this, &QDateTimeEdit::timeChanged, [=](const QTime &time) { \
+  QObject::connect(this, &QDateTimeEdit::timeChanged, [=](const QTime& time) { \
     Napi::Env env = this->emitOnNode.Env();                                    \
     Napi::HandleScope scope(env);                                              \
     auto instance = QTimeWrap::constructor.New({Napi::External<QTime>::New(    \

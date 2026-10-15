@@ -26,8 +26,8 @@ class DLL_EXPORT FlexLayout : public QLayout, public EventWidget {
   YGNodeRef node;
   YGNodeRef getRootNode(YGNodeRef node) const;
   void calculateLayout() const;
-  void restoreNodeMinStyle(YGValue &previousMinWidth,
-                           YGValue &previousMinHeight);
+  void restoreNodeMinStyle(YGValue& previousMinWidth,
+                           YGValue& previousMinHeight);
 
   // performance memebers
   QTimer throttleTimer;
@@ -37,19 +37,19 @@ class DLL_EXPORT FlexLayout : public QLayout, public EventWidget {
   void performLayout();
 
  public:
-  FlexLayout(QWidget *parentWidget = nullptr, YGNodeRef parentNode = nullptr);
+  FlexLayout(QWidget* parentWidget = nullptr, YGNodeRef parentNode = nullptr);
   ~FlexLayout() override;
   QSize sizeHint() const override;
   QSize minimumSize() const override;
-  void addItem(QLayoutItem *) override;
-  QLayoutItem *itemAt(int index) const override;
-  QLayoutItem *takeAt(int index) override;
+  void addItem(QLayoutItem*) override;
+  QLayoutItem* itemAt(int index) const override;
+  QLayoutItem* takeAt(int index) override;
   int count() const override;
-  void addWidget(QWidget *childWidget, YGNodeRef childNode);
-  void insertChildBefore(QWidget *childWidget, YGNodeRef beforeChildNode,
+  void addWidget(QWidget* childWidget, YGNodeRef childNode);
+  void insertChildBefore(QWidget* childWidget, YGNodeRef beforeChildNode,
                          YGNodeRef childNode);
-  void removeWidget(QWidget *childWidget, YGNodeRef childNode);
-  void setGeometry(const QRect &rect) override;
+  void removeWidget(QWidget* childWidget, YGNodeRef childNode);
+  void setGeometry(const QRect& rect) override;
   void setFlexNode(YGNodeRef parentNode);
   bool hasHeightForWidth() const override;
 

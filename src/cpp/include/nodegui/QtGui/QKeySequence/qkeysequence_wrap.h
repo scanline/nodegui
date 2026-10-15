@@ -16,16 +16,16 @@ class DLL_EXPORT QKeySequenceWrap : public Napi::ObjectWrap<QKeySequenceWrap> {
  public:
   static Napi::FunctionReference constructor;
   static Napi::Object init(Napi::Env env, Napi::Object exports);
-  QKeySequenceWrap(const Napi::CallbackInfo &info);
+  QKeySequenceWrap(const Napi::CallbackInfo& info);
   ~QKeySequenceWrap();
-  QKeySequence *getInternalInstance();
+  QKeySequence* getInternalInstance();
   // Wrapped methods
-  Napi::Value count(const Napi::CallbackInfo &info);
-  Napi::Value isEmpty(const Napi::CallbackInfo &info);
-  Napi::Value matches(const Napi::CallbackInfo &info);
-  Napi::Value toString(const Napi::CallbackInfo &info);
+  Napi::Value count(const Napi::CallbackInfo& info);
+  Napi::Value isEmpty(const Napi::CallbackInfo& info);
+  Napi::Value matches(const Napi::CallbackInfo& info);
+  Napi::Value toString(const Napi::CallbackInfo& info);
 };
 
 namespace StaticQKeySequenceWrapMethods {
-DLL_EXPORT Napi::Value fromQVariant(const Napi::CallbackInfo &info);
+DLL_EXPORT Napi::Value fromQVariant(const Napi::CallbackInfo& info);
 }  // namespace StaticQKeySequenceWrapMethods
