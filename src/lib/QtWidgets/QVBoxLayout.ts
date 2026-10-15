@@ -21,4 +21,3 @@ export class QVBoxLayout extends QBoxLayout {
         super(native);
     }
 }
-//wrapperCache.registerWrapper('QBoxLayoutWrap', QBoxLayout);
